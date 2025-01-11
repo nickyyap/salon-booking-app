@@ -1,0 +1,17 @@
+.stylist-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .stylist-card:hover {
+    transform: translateY(-10px); /* Moves the card up */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Optional: adds shadow effect */
+  }
+
+  .appointment-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .appointment-card:hover {
+    transform: translateY(-10px); /* Moves the card up */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Optional: adds shadow effect */
+  }
