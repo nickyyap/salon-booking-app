@@ -9,6 +9,8 @@ export default function MyAppointment() {
   const [loading, setLoading] = useState(true);
   const [showEditModal, setShowEditModal] = useState(false);
   const [appointmentToEdit, setAppointmentToEdit] = useState(null);
+  const [alertMessage, setAlertMessage] = useState("");
+  const [alertVariant, setAlertVariant] = useState("");
   const [formData, setFormData] = useState({
     title: '',
     description: '',
@@ -116,9 +118,16 @@ export default function MyAppointment() {
         (appointment) => appointment.id !== id
       );
       setAppointments(updatedAppointments);
+
+      setAlertVariant("success");
+      setAlertMessage("Appointment successfully deleted.");
+      setTimeout(() => setAlertMessage(""), 5000);
     } catch (error) {
       console.error("Error deleting appointment:", error);
       alert("Failed to delete appointment. Please try again later.");
+      setAlertVariant("danger");
+      setAlertMessage("Failed to delete appointment. Please try again later.");
+      setTimeout(() => setAlertMessage(""), 5000);
     }
   };
 
@@ -135,6 +144,13 @@ export default function MyAppointment() {
   return (
     <Layout>
       <h1 className="text-center fw-bold">My Appointment</h1>
+
+      {alertMessage && (
+        <Alert variant={alertVariant} className="mt-4" onClose={() => setAlertMessage("")} dismissible>
+          {alertMessage}
+        </Alert>
+      )}
+
       {appointments.length === 0 ? (
         <Alert variant="info" className="mt-4">
           You have no appointments.
